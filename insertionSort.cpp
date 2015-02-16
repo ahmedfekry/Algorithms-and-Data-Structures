@@ -32,3 +32,7 @@ int main(){
 
     return 0;
 }
+/*
+    run time = log(n^2)
+    efficient in small data than merge sort
+*/
