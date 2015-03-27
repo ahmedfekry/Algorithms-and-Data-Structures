@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 template <class DataType> struct node
 {
     DataType data; // data to be stored
     node* next; // pointer to the next element
 };
- 
+
 template <class DataType> class LinkedList
 {
     node<DataType>* head; // pointer to the first element
@@ -20,7 +20,7 @@ public:
     bool insert (const DataType & element, int pos); // inserts an element atan exact position
     int length(); // returns the number of elements in the list
     bool first (DataType & listEl);// returns first element of list
- 
+
     node<DataType>* retrieve (DataType & element); // returns node of found element or null otherwise
     friend LinkedList merge(LinkedList A,LinkedList B);
     bool remove (DataType element); // returns true if element is found
@@ -28,32 +28,32 @@ public:
     bool isEmpty() const; // returns true if linked list is empty
     void clear(); // removes all the elements in the list
 };
- 
+
 //
 //LinkedList::LinkedList(const LinkedList<DataType> & aplist)
- 
+
 template <class DataType>
 void LinkedList<DataType>::addFirst(DataType ele)
 {
- 
+
     node<DataType> *temp = new node<DataType>;
     temp->data = ele;
     temp->next = head;
     head = temp;
 }
- 
+
 template <class DataType>
 void LinkedList<DataType>::add(DataType ele)
 {
     node<DataType> *temp;
     for(temp = head; temp->next != NULL ; temp = temp->next);
- 
+
     node<DataType> *tail = new node<DataType>;
     tail->data = ele ;
     tail->next = NULL;
     temp->next = tail;
 }
- 
+
 template <class DataType>
 int LinkedList<DataType>::length()
 {
@@ -67,39 +67,39 @@ int LinkedList<DataType>::length()
     }
     return count;
 }
- 
+
 template <class DataType>
 bool LinkedList<DataType>::insert(const DataType &ele, int pos)
 {
- 
+
     if(pos >= length() || pos <= 0)
         return false;
     node<DataType> *temp = new node<DataType>;
     temp->data = ele;
- 
+
     node<DataType> *prev = NULL;
     node<DataType> *cuur = head;
- 
- 
+
+
     for(int i=0; i < pos; ++i)
     {
         prev = cuur;
         cuur = cuur->next;
     }
- 
- 
+
+
     temp->next = cuur;
     prev->next = temp;
- 
+
     return true;
 }
- 
+
 template <class DataType>
 bool LinkedList<DataType>::remove(DataType ele)
 {
     node<DataType>* curr = head;
     node<DataType>* prev = NULL;
- 
+
     while(curr->next != NULL )
     {
         if(curr ->data == ele)
@@ -113,21 +113,21 @@ bool LinkedList<DataType>::remove(DataType ele)
     }
     return false;
 }
- 
+
 template <class DataType>
- 
+
 void LinkedList<DataType>::Display()
 {
- 
+
     node<DataType> *temp = head;
     while(temp->next != NULL)
     {
         cout << temp->data <<" ";
         temp = temp->next;
     }
- 
+
 }
- 
+
 template <class DataType>
 LinkedList<DataType> merge ( LinkedList<DataType> A, LinkedList<DataType> B )
 {
@@ -140,7 +140,7 @@ LinkedList<DataType> merge ( LinkedList<DataType> A, LinkedList<DataType> B )
             res.addFirst(temp1->data);
         else
             res.addFirst(temp2->data);
- 
+
         temp1 = temp1->next;
         temp2 = temp2->next;
     }
@@ -148,43 +148,43 @@ LinkedList<DataType> merge ( LinkedList<DataType> A, LinkedList<DataType> B )
         res.addFirst(temp1->data);
     while(temp2->next != NULL)
         res.addFirst(temp2->data);
- 
+
     return res;
 }
- 
+
 template <class DataType>
 class Stack
 {
- 
+
 private:
     DataType *arr;
     int ssize;
     int top;
 public:
     Stack(int s) :ssize(s > 0 ? s : 10), top(-1),arr(new DataType[s]) {}
- 
+
     DataType pop()
     {
         if(top != -1)
         {
- 
+
             return arr[top--];
         }
         else
             cout << "E" <<endl;
         return NULL;
- 
+
     }
- 
+
     DataType Top()
     {
         if(top != -1)
             return arr[top];
         else
             cout << "Is" << endl;
- 
+
     }
- 
+
     void Push(const DataType &t)
     {
         if(top != ssize)
@@ -194,7 +194,7 @@ public:
         else
             cout << "is full" << endl;
     }
- 
+
     void Display()
     {
         for(int i=top ; i >= 0; i--)
@@ -202,17 +202,17 @@ public:
             cout << arr[i] << " ";
         }
         cout << endl;
- 
+
     }
- 
- 
+
+
 };
- 
- 
+
+
 template <class DataType>
 class Queue
 {
- 
+
 private:
     DataType *elem;
     int ssize;
@@ -231,7 +231,7 @@ public:
         else
             cout << "Full" <<endl;
     }
- 
+
     DataType dequeue()
     {
         DataType top = elem[0];
@@ -249,17 +249,17 @@ public:
             cout << "E" <<endl;
         }
     }
- 
- 
+
+
 };
- 
+
 int BinnarySaerch(int *arr,int item,int low,int high)
 {
     int in = -1;
     int mid;
     while(low<=high)
     {
- 
+
         mid = (low + high)/2;
         if(arr[mid] == item)
         {
@@ -275,12 +275,12 @@ int BinnarySaerch(int *arr,int item,int low,int high)
             high = mid-1;
         }
     }
- 
+
 }
- 
+
 void puppl(int *arr,int x)
 {
- 
+
     for(int i=x-1; i >= 0; --i)
     {
         for(int j=0; j < i; ++j )
@@ -290,10 +290,10 @@ void puppl(int *arr,int x)
         }
     }
 }
- 
+
 void insertion(int *arr,int s)
 {
- 
+
     for(int i=1; i < s; ++i)
     {
         int index = i;
@@ -303,9 +303,9 @@ void insertion(int *arr,int s)
             index--;
         }
     }
- 
+
 }
- 
+
 void Merge(int* ipA, int iEnd1, int iEnd2)
 {
     int i = 0;
@@ -327,7 +327,7 @@ void Merge(int* ipA, int iEnd1, int iEnd2)
         }
         ++k;
     }
- 
+
     // Copy any remaining elements of the 1st array
     while (i < iEnd1)
     {
@@ -335,7 +335,7 @@ void Merge(int* ipA, int iEnd1, int iEnd2)
         ++i;
         ++k;
     }
- 
+
     // Copy any remaining elements of the 2nd array
     while (j < iEnd2)
     {
@@ -343,7 +343,7 @@ void Merge(int* ipA, int iEnd1, int iEnd2)
         ++j;
         ++k;
     }
- 
+
     // Copy the merged array back to the original
     for (int iIndex = 0; iIndex < iEnd2; ++iIndex)
     {
@@ -351,10 +351,10 @@ void Merge(int* ipA, int iEnd1, int iEnd2)
     }
     delete [] ipTemp;
 }
- 
+
 void sort(int *iaArray,int iSize)
 {
- 
+
     for (int i = 1; i < iSize; i *= 2)
     {
         for (int j = 0; j < iSize - i; j += 2*i)
@@ -363,35 +363,35 @@ void sort(int *iaArray,int iSize)
             Merge(&(iaArray[j]), i, iEnd2);
         }
     }
- 
- 
+
+
 }
- 
+
 void Partition(int* ipA, int iSize)
 {
- 
+
     // Partitions of size 0 or 1 are already sorted
     if (iSize <= 1)
     {
         return;
     }
- 
+
     // Select a pivot from the array randomly
     int iPivot = ipA[rand() % iSize];
- 
+
     // Indices of the entries to be swapped
     int iLower = 0;
     int iUpper = iSize - 1;
- 
+
     // Partition array into sections above and below the pivot
     while (iLower < iUpper)
     {
- 
+
         while (ipA[iLower] < iPivot)
         {
             ++iLower;
         }
- 
+
         while (ipA[iUpper] > iPivot)
         {
             --iUpper;
@@ -399,22 +399,22 @@ void Partition(int* ipA, int iSize)
         // Swap the entries at the lower and upper indices
         swap(ipA[iLower],ipA[iUpper]);
     }
- 
+
     // Recursively call partition on each partititon.
     Partition(ipA, iLower);
     Partition(&(ipA[iLower + 1]), iSize - iLower - 1);
 }
- 
+
 void Quicksort(int* ipA, int iSize)
 {
     // Seed the random number generator
     srand((unsigned int)time(0));
     Partition(ipA, iSize);
 }
- 
+
 void selection(int *arr,int size)
 {
- 
+
     for(int i=0; i < size-1; ++i)
     {
         int in = i;
@@ -425,19 +425,28 @@ void selection(int *arr,int size)
         }
         swap(arr[in],arr[i]);
     }
- 
+
 }
- 
+
 int main()
 {
- 
+
     int arr[6] = {3,4,1,5,6,2};
     selection(arr,6);
     for(int i=0; i < 6; ++i)
     {
         cout << arr[i] << " ";
     }
- 
- 
+
+
 }
- 
+
+
+template <class T1, class T2, class Pred = std::less<T2> >
+struct sort_pair_first {
+    bool operator()(const std::pair<T1,T2>&left, const std::pair<T1,T2>&right) {
+        Pred p;
+        return p(left.first, right.first);
+    }
+};
+sort(v.begin(), v.end(), sort_pair_first<int, int>());
