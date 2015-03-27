@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/// 2 20 ->  2 + (20 - 2)/2 = 10
 void marge(int *arr,int *arr2,int low,int mid,int hight);
 
 void mergeSort(int *arr,int *arr2,int low,int hight){
