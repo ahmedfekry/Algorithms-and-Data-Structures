@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int dist = 2147483647,i,j,n;
+ofstream outfile("out");
+void swap (int *x, int *y)
+{
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+}
+void shoperHelper(int *route, int i, int n,int **graph)
+{
+   int j;
+   if (i == n)
+   {
+		int sum = 0;
+ 
+	    for(int i = 0; i < n; i++)
+	    {
+	        sum += graph[route[i]][route[(i + 1)]];
+	    }
+	    if (dist > sum){
+	    	for(int i=0 ; i < n+1; i++)
+	    		outfile << route[i] << " ";
+	    	outfile << endl;
+	    	outfile << "sum = " << sum << endl << endl;
+	        dist = sum;
+	    }
+	}
+   else
+   {
+        for (j = i; j <= n; j++)
+        {
+            swap(route[i],  route[j]);
+            shoperHelper(route, i + 1, n,graph);
+            swap(route[i], route[j]);
+        }
+    }
+}
+int main()
+{
+    ifstream file;
+	file.open("in.txt");
+	file >> n;
+	int **matrix = new int*[n];
+	for (int i = 0; i < n; i++)
+	{
+		matrix[i] = new int[n];
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			file >> matrix[i][j];
+		}
+	}
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout << matrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+   int *route = new int[n];
+   for(int i=0 ; i < n; i++)
+   		route[i] = i;
+   shoperHelper(route, 0, 6,matrix);
+   outfile<<"minimum distance: "<<dist<<endl;
+   return 0;
+}
+ 
